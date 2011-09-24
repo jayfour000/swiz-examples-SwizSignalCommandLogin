@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application 
+	minHeight="600" minWidth="955"
+	preinitialize="preinitializeHandler()" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="org.swizframework.examples.swizSignalCommandLogin.view.*">
+
+	<fx:Script>
+		<![CDATA[
+			import org.swizframework.core.BeanProvider;
+			import org.swizframework.core.Swiz;
+			import org.swizframework.core.SwizConfig;
+			import org.swizframework.examples.swizSignalCommandLogin.config.AppConfig;
+
+			protected function preinitializeHandler():void
+			{
+				var swizConfig:SwizConfig = new SwizConfig();
+				swizConfig.viewPackages = [ "org.swizframework.examples.swizSignalCommandLogin.view" ];
+
+				var beanProvider:BeanProvider = new AppConfig();
+				var swiz:Swiz = new Swiz(this, swizConfig, null, [ beanProvider ]);
+				swiz.init();
+
+			}
+		]]>
+	</fx:Script>
+
+	<!--- instnace of the login view component -->
+	<view:LoginView horizontalCenter="0" verticalCenter="0"/>
+
+
+</s:Application>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+	width="400" height="300" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import org.swizframework.examples.swizSignalCommandLogin.pm.LoginPM;
+
+			//------------------------------------------------------
+			//
+			// Properties
+			//
+			//------------------------------------------------------
+
+			//------------------------------------------------------
+			// pm
+			//------------------------------------------------------
+
+			[Inject]
+			public var pm:LoginPM;
+
+			//------------------------------------------------------
+			// isMessageDirty
+			//------------------------------------------------------
+
+			private var isMessageDirty:Boolean;
+
+
+			//------------------------------------------------------
+			//
+			// Methods
+			//
+			//------------------------------------------------------
+
+			[PostConstruct]
+			public function init():void
+			{
+				pm.messageSignal.add(onMessageChange);
+			}
+
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+
+				if (isMessageDirty && messageDisplay)
+				{
+					messageDisplay.text = pm.message;
+				}
+			}
+
+			protected function onMessageChange(message:String):void
+			{
+				isMessageDirty = true;
+				invalidateProperties();
+			}
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center"/>
+	</s:layout>
+
+	<!--- username input -->
+	<s:TextInput id="usernameInput" prompt="Username"/>
+
+	<!--- password input -->
+	<s:TextInput id="passwordInput" displayAsPassword="true" prompt="Password"/>
+
+	<!--- submit button -->
+	<s:Button id="submitButton" label="login" click="pm.login(usernameInput.text, passwordInput.text)"/>
+
+	<!--- message display box -->
+	<s:TextArea id="messageDisplay"
+		width="200" height="80"
+		horizontalCenter="0" verticalCenter="200"/>
+
+</s:Group>
