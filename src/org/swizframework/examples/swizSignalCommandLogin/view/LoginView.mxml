@@ -66,7 +66,8 @@
 	<s:TextInput id="passwordInput" displayAsPassword="true" prompt="Password"/>
 
 	<!--- submit button -->
-	<s:Button id="submitButton" label="login" click="pm.login(usernameInput.text, passwordInput.text)"/>
+	<s:Button id="submitButton1" label="Login with Option 1" click="pm.loginOption1(usernameInput.text, passwordInput.text)"/>
+	<s:Button id="submitButton2" label="Login with Option 2" click="pm.loginOption2(usernameInput.text, passwordInput.text)"/>
 
 	<!--- message display box -->
 	<s:TextArea id="messageDisplay"

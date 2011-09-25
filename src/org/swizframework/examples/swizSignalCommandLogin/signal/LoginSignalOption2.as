@@ -4,9 +4,9 @@ package org.swizframework.examples.swizSignalCommandLogin.signal
 
 	import org.osflash.signals.Signal;
 
-	public class LoginSignal extends Signal
+	public class LoginSignalOption2 extends Signal
 	{
-		public function LoginSignal()
+		public function LoginSignalOption2()
 		{
 			super(String, String);
 		}

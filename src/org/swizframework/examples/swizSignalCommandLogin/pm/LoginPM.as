@@ -4,7 +4,8 @@ package org.swizframework.examples.swizSignalCommandLogin.pm
 
 	import org.osflash.signals.Signal;
 	import org.swizframework.examples.swizSignalCommandLogin.model.UserModel;
-	import org.swizframework.examples.swizSignalCommandLogin.signal.LoginSignal;
+	import org.swizframework.examples.swizSignalCommandLogin.signal.LoginSignalOption1;
+	import org.swizframework.examples.swizSignalCommandLogin.signal.LoginSignalOption2;
 
 	public class LoginPM
 	{
@@ -16,11 +17,19 @@ package org.swizframework.examples.swizSignalCommandLogin.pm
 		//------------------------------------------------------
 
 		//------------------------------------------------------
-		// loginSignal
+		// loginSignalOption1
 		//------------------------------------------------------
 
 		[Inject]
-		public var loginSignal:LoginSignal;
+		public var loginSignalOption1:LoginSignalOption1;
+
+
+		//------------------------------------------------------
+		// loginSignalOption2
+		//------------------------------------------------------
+
+		[Inject]
+		public var loginSignalOption2:LoginSignalOption2;
 
 
 		//------------------------------------------------------
@@ -63,10 +72,16 @@ package org.swizframework.examples.swizSignalCommandLogin.pm
 			messageSignal = new Signal(String);
 		}
 
-		public function login(username:String, password:String):void
+		public function loginOption1(username:String, password:String):void
 		{
 			// Strong type helper method - dispatchHelper
-			loginSignal.dispatchHelper(username, password);
+			loginSignalOption1.dispatchHelper(username, password);
+		}
+
+		public function loginOption2(username:String, password:String):void
+		{
+			// Strong type helper method - dispatchHelper
+			loginSignalOption2.dispatchHelper(username, password);
 		}
 	}
 }
